@@ -1,7 +1,7 @@
 @extends('layouts.app', ['title' => __('User Management')])
 
 @section('content')
-    @include('users.partials.header', ['title' => __('Add User')])   
+    @include('admin.users.partials.header', ['title' => __('Add User')])   
 
     <div class="container-fluid mt--7">
         <div class="row">
@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <form method="post" action="{{ route('user.store') }}" autocomplete="off">
                             @csrf
-                            
+                            <input type="hidden" value="0" name="role">
                             <h6 class="heading-small text-muted mb-4">{{ __('User information') }}</h6>
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">

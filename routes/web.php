@@ -18,10 +18,19 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => 'auth'], function () {
-	Route::resource('user', 'UserController', ['except' => ['show']]);
-	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
-	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
-	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+//Admin routes
+
+Route::group(['middleware' => ['auth','admin']], function () {
+	Route::get('admin', function () {
+		return redirect('admin/dashboard');
+	});
+	Route::get('admin/dashboard', 'Admin\HomeController@index')->name('home');
+
+	Route::resource('admin/user', 'Admin\UserController', ['except' => ['show']]);
+	Route::resource('admin/admins', 'Admin\AdminController', ['except' => ['show']]);
+
+	Route::get('admin/profile', ['as' => 'profile.edit', 'uses' => 'Admin\ProfileController@edit']);
+	Route::put('admin/profile', ['as' => 'profile.update', 'uses' => 'Admin\ProfileController@update']);
+	Route::put('admin/profile/password', ['as' => 'profile.password', 'uses' => 'Admin\ProfileController@password']);
 });
 

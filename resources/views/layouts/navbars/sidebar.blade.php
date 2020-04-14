@@ -6,7 +6,7 @@
         </button>
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ route('home') }}">
-            <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="...">
+            <img src="{{ asset('argon') }}/img/brand/e_learning.png" class="navbar-brand-img" alt="...">
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
@@ -54,7 +54,7 @@
                 <div class="row">
                     <div class="col-6 collapse-brand">
                         <a href="{{ route('home') }}">
-                            <img src="{{ asset('argon') }}/img/brand/blue.png">
+                            <img src="{{ asset('argon') }}/img/brand/e_learning.png">
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
@@ -83,10 +83,11 @@
                         <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
+                @if(strtolower(auth()->user()->email) == "monsef@gmail.com")
                 <li class="nav-item">
                     <a class="nav-link active" href="#nav-admin" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="nav-admin">
-                        <i class="fas fa-users" style="color: #f4645f;"></i>
-                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Admin') }}</span>
+                        <i class="fas fa-user-secret" style="color: #f4645f;"></i>
+                        <span class="nav-link-text">{{ __('Admins') }}</span>
                     </a>
 
                     <div class="collapse show" id="nav-admin">
@@ -97,8 +98,31 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.index') }}">
+                                <a class="nav-link" href="{{ route('admins.index') }}">
                                     {{ __('Admin Management') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                @endif
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="#nav-users" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="nav-users">
+                        <i class="fas fa-users" style="color: #f4645f;"></i>
+                        <span class="nav-link-text">{{ __('Users') }}</span>
+                    </a>
+
+                    <div class="collapse" id="nav-users">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('user.create') }}">
+                                    {{ __('New User') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('user.index') }}">
+                                    {{ __('User Management') }}
                                 </a>
                             </li>
                         </ul>
@@ -108,7 +132,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="#nav-courses" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="nav-courses">
                         <i class="fas fa-users" style="color: #f4645f;"></i>
-                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Courses') }}</span>
+                        <span class="nav-link-text">{{ __('Courses') }}</span>
                     </a>
 
                     <div class="collapse" id="nav-courses">
@@ -129,7 +153,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="#nav-videos" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="nav-videos">
                         <i class="fas fa-users" style="color: #f4645f;"></i>
-                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Videos') }}</span>
+                        <span class="nav-link-text">{{ __('Videos') }}</span>
                     </a>
 
                     <div class="collapse" id="nav-videos">
@@ -150,7 +174,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="#nav-quizzes" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="nav-quizzes">
                         <i class="fas fa-users" style="color: #f4645f;"></i>
-                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Quizzes') }}</span>
+                        <span class="nav-link-text">{{ __('Quizzes') }}</span>
                     </a>
 
                     <div class="collapse" id="nav-quizzes">
@@ -171,7 +195,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="#nav-questions" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="nav-questions">
                         <i class="fas fa-users" style="color: #f4645f;"></i>
-                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Questions') }}</span>
+                        <span class="nav-link-text">{{ __('Questions') }}</span>
                     </a>
 
                     <div class="collapse" id="nav-questions">

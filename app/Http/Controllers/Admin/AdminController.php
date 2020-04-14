@@ -1,22 +1,33 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\http\Request;
 
-class UserController extends Controller
+use App\Http\Controllers\Controller;
+
+class AdminController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('owner');
+    }
     /**
      * Display a listing of the users
      *
      * @param  \App\User  $model
      * @return \Illuminate\View\View
      */
-    public function index(User $model)
-    {
-        return view('users.index', ['users' => $model->paginate(15)]);
+    public function index()
+    {   
+        $auth_id = Auth::user()->id;
+        $users = User::where('role',1)->whereNotIn('id',[$auth_id])->orderBy('id','desc')->paginate(15);
+        return view('admin.admins.index', ['users' => $users]);
     }
 
     /**
@@ -26,7 +37,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('admin.admins.create');
     }
 
     /**
@@ -40,7 +51,7 @@ class UserController extends Controller
     {
         $model->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
 
-        return redirect()->route('user.index')->withStatus(__('User successfully created.'));
+        return redirect()->route('admins.index')->withStatus(__('Admin successfully created.'));
     }
 
     /**
@@ -49,9 +60,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\View\View
      */
-    public function edit(User $user)
+    public function edit(User $admin)
     {
-        return view('users.edit', compact('user'));
+        return view('admin.admins.edit', compact('admin'));
     }
 
     /**
@@ -61,14 +72,20 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UserRequest $request, User  $user)
+    public function update(Request $request, User  $admin)
     {
-        $user->update(
+        $rules = [
+            'name' => 'required|string|min:5|max:30',
+            'email' => 'required|email',
+            'password' => 'nullable|min:6|max:30|confirmed',
+        ];
+        $this->validate($request, $rules);
+        $admin->update(
             $request->merge(['password' => Hash::make($request->get('password'))])
                 ->except([$request->get('password') ? '' : 'password']
         ));
 
-        return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
+        return redirect()->route('admins.index')->withStatus(__('Admin successfully updated.'));
     }
 
     /**
@@ -77,10 +94,10 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(User  $user)
+    public function destroy(User  $admin)
     {
-        $user->delete();
+        $admin->delete();
 
-        return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));
+        return redirect()->route('admins.index')->withStatus(__('Admin successfully deleted.'));
     }
 }
