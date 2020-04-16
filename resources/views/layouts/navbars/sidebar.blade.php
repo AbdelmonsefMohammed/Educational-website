@@ -128,28 +128,17 @@
                         </ul>
                     </div>
                 </li>
-
                 <li class="nav-item">
-                    <a class="nav-link active" href="#nav-courses" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="nav-courses">
-                        <i class="fas fa-users" style="color: #f4645f;"></i>
-                        <span class="nav-link-text">{{ __('Courses') }}</span>
+                    <a class="nav-link active" href="{{ route('tracks.index') }}">
+                        <i class="ni ni-key-25 text-info"></i> {{ __('Tracks') }}
                     </a>
-
-                    <div class="collapse" id="nav-courses">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('profile.edit') }}">
-                                    {{ __('Admin profile') }}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.index') }}">
-                                    {{ __('Admin Management') }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ route('courses.index') }}">
+                        <i class="ni ni-key-25 text-info"></i> {{ __('Courses') }}
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link active" href="#nav-videos" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="nav-videos">
                         <i class="fas fa-users" style="color: #f4645f;"></i>
@@ -213,16 +202,7 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="ni ni-key-25 text-info"></i> {{ __('Login') }}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="ni ni-circle-08 text-pink"></i> {{ __('Register') }}
-                    </a>
-                </li>
+
             </ul>
             <!-- Divider -->
             <hr class="my-3">
