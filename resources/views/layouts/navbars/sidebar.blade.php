@@ -140,67 +140,20 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link active" href="#nav-videos" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="nav-videos">
-                        <i class="fas fa-users" style="color: #f4645f;"></i>
-                        <span class="nav-link-text">{{ __('Videos') }}</span>
+                    <a class="nav-link active" href="{{ route('videos.index') }}">
+                        <i class="ni ni-key-25 text-info"></i> {{ __('Videos') }}
                     </a>
+                </li>
 
-                    <div class="collapse" id="nav-videos">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('profile.edit') }}">
-                                    {{ __('Admin profile') }}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.index') }}">
-                                    {{ __('Admin Management') }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ route('quizzes.index') }}">
+                        <i class="ni ni-key-25 text-info"></i> {{ __('Quizzes') }}
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#nav-quizzes" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="nav-quizzes">
-                        <i class="fas fa-users" style="color: #f4645f;"></i>
-                        <span class="nav-link-text">{{ __('Quizzes') }}</span>
+                    <a class="nav-link active" href="{{ route('questions.index') }}">
+                        <i class="ni ni-key-25 text-info"></i> {{ __('Questions') }}
                     </a>
-
-                    <div class="collapse" id="nav-quizzes">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('profile.edit') }}">
-                                    {{ __('Admin profile') }}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.index') }}">
-                                    {{ __('Admin Management') }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#nav-questions" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="nav-questions">
-                        <i class="fas fa-users" style="color: #f4645f;"></i>
-                        <span class="nav-link-text">{{ __('Questions') }}</span>
-                    </a>
-
-                    <div class="collapse" id="nav-questions">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('profile.edit') }}">
-                                    {{ __('Admin profile') }}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.index') }}">
-                                    {{ __('Admin Management') }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
 
             </ul>

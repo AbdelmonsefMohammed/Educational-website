@@ -8,9 +8,10 @@ class Quiz extends Model
 {
     protected $fillable = [
         'name',
+        'course_id',
     ];
 
-    public function question()
+    public function questions()
     {
         return $this->hasMany('App\Question');
     }
