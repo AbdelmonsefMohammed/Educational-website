@@ -43,7 +43,7 @@
                             <tbody>
                                 @foreach ($quizzes as $quiz)
                                     <tr>
-                                        <td>{{ $quiz->name }}</td>
+                                        <td><a href="{{ route('quizzes.show', $quiz->id) }}">{{ $quiz->name }}</a></td>
                                         <td><a href="{{ route('courses.show', $quiz->course->id) }}">{{ \Str::limit($quiz->course->title , 30) }}</a></td>
                                         <td>{{ count($quiz->questions) }}</td>
                                         <td>{{ $quiz->created_at->diffforHumans() }}</td>

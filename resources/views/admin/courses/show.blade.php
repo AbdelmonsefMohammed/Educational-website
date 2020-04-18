@@ -1,25 +1,40 @@
-@extends('layouts.app', ['title' => __('Videos Management')])
+@extends('layouts.app', ['title' => __('Course Management')])
 
 @section('content')
-    @include('layouts.headers.cards')
+    @include('admin.users.partials.header', ['title' => __('Review Course')])   
 
     <div class="container-fluid mt--7">
         <div class="row">
-            <div class="col">
-                <div class="card shadow">
-                    <div class="card-header border-0">
+            <div class="col-xl-12 order-xl-1">
+                <div class="card bg-secondary shadow">
+                    <div class="card-header bg-white border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">{{ __('Videos') }}</h3>
+                                <h3 class="mb-0">{{ __('Course Management') }}</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('videos.create') }}" class="btn btn-sm btn-primary">{{ __('Add Video') }}</a>
+                                <a href="{{ route('courses.index') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
                             </div>
-
                         </div>
                     </div>
-
-
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="course-image">
+                                    @if($course->photo)
+                                    <img src="/images/{{$course->photo->filename}}" alt="" class="img-fluid">
+                                    @else
+                                    <img class="card-img-top" src="/images/1.jpg" alt="Card image cap">
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <h3>Course title: {{$course->title}}</h3>
+                                <h3>Track Name:<a href="{{ route('tracks.show' , $course->track->id) }}"> {{$course->track->name}}</a></h3>
+                                <span class="{{$course->status == 0 ? 'text-success' : 'text-danger'}}">{{$course->status == 0 ? 'Free': 'Paid'}}</span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-12">
                         @if (session('status'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -32,26 +47,35 @@
                     </div>
 
                     @include('includes.errors')
-                    @if(count($videos))
+                    
                     <div class="table-responsive">
-
+                        <div class="card-header bg-white border-0">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <h3 class="mb-0">{{ __('Videos') }}</h3>
+                                </div>
+                                <div class="col-2 text-right">
+                                    <a href="/admin/courses/{{$course->id}}/videos/create" class="btn btn-sm btn-primary">{{ __('Add Video') }}</a>
+                                </div>
+                                <div class="col-2 text-right">
+                                    <a href="/admin/courses/{{$course->id}}/quizzes/create" class="btn btn-sm btn-primary">{{ __('Add Quiz') }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        @if(count($course->videos))
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">{{ __('Title') }}</th>
-                                    <th scope="col">{{ __('Courses name') }}</th>
                                     <th scope="col">{{ __('Creation Date') }}</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                @foreach ($videos as $video)
+                                @foreach ($course->videos as $video)
                                     <tr>
                                         <td title="{{$video->title}}"><a href="{{ route('videos.show', $video->id) }}">{{ \Str::limit($video->title , 40) }}</a></td>
-                                        <td>
-                                            <a href="/admin/courses/{{$video->course->id}}">{{\Str::limit($video->course->title , 40)}}</a>
-                                        </td>
                                         <td>{{ $video->created_at->diffForHumans() }}</td>
                                         <td class="text-right">
                                             <div class="dropdown">
@@ -76,20 +100,14 @@
 
                             </tbody>
                         </table>
-                    @else
+                        @else
                         <p class="text-center lead">There is no videos</p>  
-                    @endif
-                    </div>
-                    
-                    <div class="card-footer py-4">
-                        <nav class="d-flex justify-content-end" aria-label="...">
-                            {{ $videos->links() }}
-                        </nav>
+                        @endif
                     </div>
                 </div>
+            </div>
         </div>
-    </div>
-            
+        
         @include('layouts.footers.auth')
     </div>
 @endsection

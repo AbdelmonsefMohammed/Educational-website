@@ -10,13 +10,14 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">{{ __('Courses') }}</h3>
+                                <h2 class="mb-0">{{ __('Track name: ') }}{{ $track->name }}</h2>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('courses.create') }}" class="btn btn-sm btn-primary">{{ __('Add Course') }}</a>
+                                <a href="/admin/tracks/{{ $track->id }}/courses/create" class="btn btn-sm btn-primary">{{ __('Add Course') }}</a>
                             </div>
                         </div>
                     </div>
+                    
 
 
                     <div class="col-12">
@@ -30,10 +31,10 @@
                         @endif
                     </div>
                     @include('includes.errors')
-                    @if(count($courses))
+                    @if(count($track->courses))
                     <div class="row ml-3">
                         
-                            @foreach ($courses as $course)
+                            @foreach ($track->courses as $course)
                             <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6">
                             <div class="card mb-3" style="width: 18rem;">
                                 @if($course->photo)
@@ -65,11 +66,7 @@
                         
                     </div>
                     @endif
-                    <div class="card-footer py-4">
-                        <nav class="d-flex justify-content-end" aria-label="...">
-                            {{ $courses->links() }}
-                        </nav>
-                    </div>
+
                 </div>
             </div>
         </div>
