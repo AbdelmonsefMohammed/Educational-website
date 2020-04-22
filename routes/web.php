@@ -42,7 +42,7 @@ Route::group(['middleware' => ['auth','admin']], function () {
 	Route::resource('admin/quizzes', 'Admin\QuizController');
 	Route::resource('admin/quizzes.questions', 'Admin\QuizQuestionController');
 
-	Route::resource('admin/questions', 'Admin\QuestionController');
+	Route::resource('admin/questions', 'Admin\QuestionController', ['except' => ['show']]);
 
 	Route::get('admin/profile', ['as' => 'profile.edit', 'uses' => 'Admin\ProfileController@edit']);
 	Route::put('admin/profile', ['as' => 'profile.update', 'uses' => 'Admin\ProfileController@update']);

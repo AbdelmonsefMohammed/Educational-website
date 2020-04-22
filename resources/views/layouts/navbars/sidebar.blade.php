@@ -65,17 +65,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Form -->
-            <form class="mt-4 mb-3 d-md-none">
-                <div class="input-group input-group-rounded input-group-merge">
-                    <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="{{ __('Search') }}" aria-label="Search">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <span class="fa fa-search"></span>
-                        </div>
-                    </div>
-                </div>
-            </form>
+
             <!-- Navigation -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -130,29 +120,29 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="{{ route('tracks.index') }}">
-                        <i class="ni ni-key-25 text-info"></i> {{ __('Tracks') }}
+                        <i class="fas fa-chart-bar text-warning"></i> {{ __('Tracks') }}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="{{ route('courses.index') }}">
-                        <i class="ni ni-key-25 text-info"></i> {{ __('Courses') }}
+                        <i class="fas fa-chalkboard-teacher text-warning"></i> {{ __('Courses') }}
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link active" href="{{ route('videos.index') }}">
-                        <i class="ni ni-key-25 text-info"></i> {{ __('Videos') }}
+                        <i class="fab fa-youtube text-warning"></i> {{ __('Videos') }}
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link active" href="{{ route('quizzes.index') }}">
-                        <i class="ni ni-key-25 text-info"></i> {{ __('Quizzes') }}
+                        <i class="far fa-edit text-warning"></i> {{ __('Quizzes') }}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="{{ route('questions.index') }}">
-                        <i class="ni ni-key-25 text-info"></i> {{ __('Questions') }}
+                        <i class="far fa-question-circle text-warning"></i> {{ __('Questions') }}
                     </a>
                 </li>
 

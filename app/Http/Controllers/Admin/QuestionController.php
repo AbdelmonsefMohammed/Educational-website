@@ -26,7 +26,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.questions.create');
     }
 
     /**
@@ -37,29 +37,25 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'title' => 'required|min:20|max:200',
+            'answers' => 'required|min:5|max:200',
+            'right_answer' => 'required|min:1|max:200',
+            'score' => 'required|in:1,5,10,15,20',
+            'quiz_id' => 'required|integer',
+        ];
+        $this->validate($request , $rules);
+        if(Question::create($request->all()))
+        {
+            return redirect('/admin/questions')->withStatus('Question successfully created');
+        }else{
+            return redirect('/admin/questions/create')->withStatus('Something went wrong');
+        }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    
+    public function edit(Question $question)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return view('admin.questions.edit',compact('question'));
     }
 
     /**
@@ -69,9 +65,22 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Question $question)
     {
-        //
+        $rules = [
+            'title' => 'required|min:20|max:200',
+            'answers' => 'required|min:5|max:200',
+            'right_answer' => 'required|min:1|max:200',
+            'score' => 'required|in:1,5,10,15,20',
+            'quiz_id' => 'required|integer',
+        ];
+        $this->validate($request , $rules);
+        if($question->update($request->all()))
+        {
+            return redirect('/admin/questions')->withStatus('Question successfully updated');
+        }else{
+            return redirect('/admin/questions/'. $question->id .'/edit')->withStatus('Something went wrong');
+        }
     }
 
     /**
@@ -80,8 +89,9 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Question $question)
     {
-        //
+        $question->delete();
+        return redirect('/admin/questions')->withStatus('Question successfully deleted');
     }
 }
