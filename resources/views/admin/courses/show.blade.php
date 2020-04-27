@@ -32,6 +32,7 @@
                                 <h3>Course title: {{$course->title}}</h3>
                                 <h3>Track Name:<a href="{{ route('tracks.show' , $course->track->id) }}"> {{$course->track->name}}</a></h3>
                                 <span class="{{$course->status == 0 ? 'text-success' : 'text-danger'}}">{{$course->status == 0 ? 'Free': 'Paid'}}</span>
+                                <p><strong>Description :</strong> {{$course->description}}</p>
                             </div>
                         </div>
                     </div>

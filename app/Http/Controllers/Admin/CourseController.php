@@ -36,13 +36,17 @@ class CourseController extends Controller
     {
        $rules = [
            'title'    => 'required|min:20|max:120',
+           'description'    => 'required|min:20|max:1000',
            'status'   => 'required|integer|in:0,1',
            'link'     => 'required|url',
            'track_id' => 'required|integer',
            'image'    => 'required|image'
        ];
        $this->validate($request, $rules);
-       $course = Course::create($request->all());
+       
+       $slug = strtolower(str_replace(' ','-',$request['title']));
+       $request->request->add(['slug' => $slug]);
+       $course = Course::create($request->all(),);
 
        if($course)
        {    
@@ -89,12 +93,15 @@ class CourseController extends Controller
     {
         $rules = [
             'title'    => 'required|min:20|max:120',
+            'description'    => 'required|min:20|max:1000',
             'status'   => 'required|integer|in:0,1',
             'link'     => 'required|url',
             'track_id' => 'required|integer',
             'image'    => 'image'
         ];
         $this->validate($request, $rules);
+        $slug = strtolower(str_replace(' ','-',$request['title']));
+        $request->request->add(['slug' => $slug]);
         $course->update($request->all());
  
         if($course)
@@ -127,6 +134,8 @@ class CourseController extends Controller
             }
             
             return redirect('/admin/courses')->withStatus('Course successfully updated');
+        }else{
+            return redirect('/admin/courses/' . $course->id , '/edit')->withStatus('Something went wrong');
         }
     }
 
@@ -149,3 +158,4 @@ class CourseController extends Controller
         return redirect('/admin/courses')->withStatus('Course successfully deleted');
     }
 }
+

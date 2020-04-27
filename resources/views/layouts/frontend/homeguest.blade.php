@@ -26,17 +26,23 @@
         <div class="single-popular-course">
             <div class="thumb">
               @if ($course->photo)
+              <a href="/courses/{{$course->slug}}">
                 <img style="height:165.75px" class="f-img img-fluid mx-auto" src="/images/{{ $course->photo->filename }}" alt="" />
+              </a>
               @else
+              <a href="/courses/{{$course->slug}}">
                 <img style="height:165.75px" class="f-img img-fluid mx-auto" src="{{ asset('frontend') }}/img/popular-course/p3.jpg" alt="" />
+              </a>
               @endif
             </div>
             <div class="details">
               <div class="d-flex justify-content-between mb-20">
-                <p class="name">{{$course->track->name}}</p>
+                <a href="#">
+                  <p class="name">{{$course->track->name}}</p>
+                </a>
                 <p class="value">$150</p>
               </div>
-              <a href="#">
+              <a href="/courses/{{$course->slug}}">
                 <h5 title="{{$course->title}}">{{\Str::limit($course->title,20)}}</h5>
               </a>
               <div class="bottom d-flex mt-15">
@@ -93,13 +99,17 @@
                   
                 <div><a href="#">
                     @if ($freecourse->photo)
+                    <a href="/courses/{{$freecourse->slug}}">
                     <img style="height:369px" class="img-fluid" src="/images/{{ $freecourse->photo->filename }}" alt="" />
-                  @else
+                    </a>
+                    @else
+                  <a href="/courses/{{$freecourse->slug}}">
                     <img style="height:369px" class="img-fluid" src="{{ asset('frontend') }}/img/popular-course/p3.jpg" alt="" />
+                  </a>
                   @endif
                   
-                  <h4 class="text-white mb-20 mt-30">Course Name: {{$freecourse->title}}</h4>
-                  <h5 class="text-white mb-20 mt-30">Category Name: {{$freecourse->track->name}}</h5>
+                  <h4 class="text-white mb-20 mt-30"><strong class="text-warning">Course Name : </strong><a class="text-white" href="/courses/{{$freecourse->slug}}"> {{$freecourse->title}}</a></h4>
+                  <h5 class="text-white mb-20 mt-30"><strong class="text-warning">Category Name : </strong><a class="text-white" href="#"> {{$freecourse->track->name}}</a></h5>
                 </a>
                 </div>
                 @endforeach
@@ -130,17 +140,23 @@
 							<a href="#" target="_blank">
 								<div class="thumb">
                   @if ($course->photo)
+                  <a href="/courses/{{$course->slug}}">
                   <img style="height:250px" class="content-image img-fluid d-block mx-auto" src="/images/{{ $course->photo->filename }}" alt="">
+                  </a>
                   @else
+                  <a href="/courses/{{$course->slug}}">
                   <img style="height:250px" class="content-image img-fluid d-block mx-auto" src="{{ asset('frontend') }}/img/popular-course/p3.jpg" alt="">
+                  </a>
                   @endif
-								</div>
+                </div>
+                <a href="/courses/{{$course->slug}}">
 								<div class="content-details">
 									<h5 class="content-title mx-auto text-uppercase text-white">{{$course->created_at >= Carbon\Carbon::now()->submonth(1) ? 'New Course' : 'Legacy Course'}}</h5>
 									<span></span>
                   <p class="text-warning">{{\Str::limit($course->title, 30)}}</p>
                   <p>Entrolled By: {{count($course->users)}} users</p>
-								</div>
+                </div>
+              </a>
 							</a>
 						</div>
 					</div>
@@ -152,7 +168,7 @@
 
         <div class="famous-tracks">
           
-          <h4>Popular topics for you :</h4>
+          <h4>Popular Tracks for you :</h4>
               <div class="row text-center justify-content-center mt-3">
                 @foreach($famous_tracks as $famous_track)
                 <div class="col-lg-2 col-md-3 col-xs-6  tracks"><a class="btn track-name" href="#">{{ $famous_track->name }}</a></div>

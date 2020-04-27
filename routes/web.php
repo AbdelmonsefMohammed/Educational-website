@@ -15,6 +15,12 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/courses/{slug}', 'CourseController@index');
+
+
+
+
+
 //Admin routes
 
 Route::group(['middleware' => ['auth','admin']], function () {
