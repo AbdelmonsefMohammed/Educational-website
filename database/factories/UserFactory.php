@@ -26,7 +26,7 @@ $factory->define(User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        'password' => '$2y$10$WVu/aWH71P7c.IBjd.HcBuNnew7nPHn8Z32tR9cgiaXgePugkum5S', // secret
         'remember_token' => Str::random(10),
         'role' => $faker->randomElement([0,1]),
         'score' => $faker->randomElement([54,90,200,40,155,190]),
@@ -76,12 +76,13 @@ $factory->define(Quiz::class, function (Faker $faker) {
 $factory->define(Question::class, function (Faker $faker) {
 
     $answers= $faker->paragraph;
-    $right_answer = $faker->randomElement(explode('r',$answers));
+    $right_answer = $faker->randomElement(explode('.',rtrim($answers , '.')));
     return [
-        'title' => $faker->paragraph,
+        'title' => $faker->sentence,
         'answers' => $answers,
         'right_answer' => $right_answer,
         'score' => $faker->randomElement([1,5,10,15,20]),
+        'type' => $faker->randomElement(['text','checkbox']),
         'quiz_id' => Quiz::all()->random()->id,
 
     ];

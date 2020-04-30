@@ -7,19 +7,18 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-12 banner-right">
                     <h1 class="text-white">
-                        Course Details
+                        Course Title
                     </h1>
                     <p class="mx-auto text-white  mt-20 mb-40">
-                        In the history of modern astronomy, there is probably no one greater leap forward than the
-                        building.
+                        {{$course->title}}
                     </p>
                     <div class="link-nav">
                         <span class="box">
-                            <a href="index.html">Home </a>
+                            <a href="/">Home </a>
                             <i class="lnr lnr-arrow-right"></i>
                             <a href="courses.html">Courses </a>
                             <i class="lnr lnr-arrow-right"></i>
-                            <a href="course-details.html">Course Details</a>
+                            <a href="/courses/{{$course->slug}}">Course Details</a>
                         </span>
                     </div>
                 </div>
@@ -32,97 +31,65 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 course-details-left">
+                        <div class="col-12">
+                            @if (session('status'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('status') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
+                        </div>
                         <div class="main-image">
-                            <img class="img-fluid" src="img/courses/course-details.jpg" alt="">
+                            @if ($course->photo)
+                            <img style="width:730px;height:340px" class="img-fluid" src="/images/{{ $course->photo->filename }}" alt="">
+                            @else
+                            <img style="width:730px;height:340px" class="img-fluid" src="{{ asset('frontend') }}/img/popular-course/p3.jpg" alt="">
+                            @endif
                         </div>
                         <div class="content-wrapper">
                             <h4 class="title">Objectives</h4>
                             <div class="content">
-                                When you enter into any new area of science, you almost always find yourself with a
-                                baffling new language of
-                                technical terms to learn before you can converse with the experts. This is certainly
-                                true in astronomy both in
-                                terms of terms that refer to the cosmos and terms that describe the tools of the trade,
-                                the most prevalent
-                                being the telescope.
-                                <br>
-                                <br>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore
-                                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                ut aliquip ex ea
-                                commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum. Lorem ipsum dolor sit
-                                amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                                dolore magna aliqua. Ut enim
-                                ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat. Duis aute
-                                irure dolor in reprehenderit in voluptate velit esse cillum.
+                                {{$course->description}}
                             </div>
     
-                            <h4 class="title">Eligibility</h4>
-                            <div class="content">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore
-                                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
-                                <br>
-                                <br>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore
-                                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                ut aliquip ex ea
-                                commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum. Lorem ipsum dolor sit
-                                amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                                dolore magna aliqua. Ut enim
-                                ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat. Duis aute
-                                irure dolor in reprehenderit in voluptate velit esse cillum.
-                            </div>
     
-                            <h4 class="title">Course Outline</h4>
+                            <h4 class="title">Course Videos</h4>
                             <div class="content">
+                                @if (count($course->videos) > 0)
                                 <ul class="course-list">
+                                    @foreach ($course->videos as $video)
+                                        
+
                                     <li class="justify-content-between d-flex">
-                                        <p>Introduction Lesson</p>
-                                        <a class="btn text-uppercase" href="#">View Details</a>
+                                        <p>{{$video->title}}</p>
+                                        <a class="btn text-uppercase play-btn" href="{{$video->link}}"> Watch Video</a>
                                     </li>
-                                    <li class="justify-content-between d-flex">
-                                        <p>Basics of HTML</p>
-                                        <a class="btn text-uppercase" href="#">View Details</a>
-                                    </li>
-                                    <li class="justify-content-between d-flex">
-                                        <p>Getting Know about HTML</p>
-                                        <a class="btn text-uppercase" href="#">View Details</a>
-                                    </li>
-                                    <li class="justify-content-between d-flex">
-                                        <p>Tags and Attributes</p>
-                                        <a class="btn text-uppercase" href="#">View Details</a>
-                                    </li>
-                                    <li class="justify-content-between d-flex">
-                                        <p>Basics of CSS</p>
-                                        <a class="btn text-uppercase" href="#">View Details</a>
-                                    </li>
-                                    <li class="justify-content-between d-flex">
-                                        <p>Getting Familiar with CSS</p>
-                                        <a class="btn text-uppercase" href="#">View Details</a>
-                                    </li>
-                                    <li class="justify-content-between d-flex">
-                                        <p>Introduction to Bootstrap</p>
-                                        <a class="btn text-uppercase" href="#">View Details</a>
-                                    </li>
-                                    <li class="justify-content-between d-flex">
-                                        <p>Responsive Design</p>
-                                        <a class="btn text-uppercase" href="#">View Details</a>
-                                    </li>
-                                    <li class="justify-content-between d-flex">
-                                        <p>Canvas in HTML 5</p>
-                                        <a class="btn text-uppercase" href="#">View Details</a>
-                                    </li>
-    
+                                    @endforeach
                                 </ul>
+                                @else
+                                <p>No videos yet</p>
+                                @endif
+                            </div>
+
+                            <h4 class="title">Course Quizzes</h4>
+                            <div class="content">
+                                @if (count($course->quizzes) > 0)
+                                <ul class="course-list">
+                                    @foreach ($course->quizzes as $quiz)
+                                        
+
+                                    <li class="justify-content-between d-flex">
+                                        <p>{{$quiz->name}}</p>
+                                        
+                                        <a target="_blank" href="/courses/{{$course->slug}}/quizzes/{{$quiz->name}}" class="btn text-uppercase">Start Quiz</a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                                @else
+                                <p>No quizzes yet</p>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -132,24 +99,24 @@
                         <ul>
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
-                                    <p>Trainer’s Name</p>
-                                    <span class="or">George Mathews</span>
+                                    <p>Track Name</p>
+                                    <span class="or">{{$course->track->name}}</span>
                                 </a>
                             </li>
                             <li>
-                                <a class="justify-content-between d-flex" href="#">
+                                <a class="justify-content-between d-flex">
                                     <p>Course Fee </p>
-                                    <span>$230</span>
+                                    <span class="{{$course->status == 0 ? 'text-success' : 'text-danger'}}">{{$course->status == 0 ? 'Free' : 'Paid'}}</span>
                                 </a>
                             </li>
                             <li>
-                                <a class="justify-content-between d-flex" href="#">
-                                    <p>Available Seats </p>
-                                    <span>15</span>
+                                <a class="justify-content-between d-flex">
+                                    <p>Enrolled By </p>
+                                    <span>{{count($course->users)}}</span>
                                 </a>
                             </li>
                             <li>
-                                <a class="justify-content-between d-flex" href="#">
+                                <a class="justify-content-between d-flex">
                                     <p>Schedule </p>
                                     <span>2.00 pm to 4.00 pm</span>
                                 </a>
@@ -157,128 +124,7 @@
                         </ul>
                         <a href="#" class="btn text-uppercase enroll">Enroll the course</a>
     
-                        <h4 class="title">Reviews</h4>
-                        <div class="content">
-                            <div class="review-top row pt-40">
-                                <div class="col-lg-12">
-                                    <h6 class="mb-15">Provide Your Rating</h6>
-                                    <div class="d-flex flex-row reviews justify-content-between">
-                                        <span>Quality</span>
-                                        <div class="star">
-                                            <i class="fa fa-star checked"></i>
-                                            <i class="fa fa-star checked"></i>
-                                            <i class="fa fa-star checked"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <span>Outstanding</span>
-                                    </div>
-                                    <div class="d-flex flex-row reviews justify-content-between">
-                                        <span>Puncuality</span>
-                                        <div class="star">
-                                            <i class="fa fa-star checked"></i>
-                                            <i class="fa fa-star checked"></i>
-                                            <i class="fa fa-star checked"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <span>Outstanding</span>
-                                    </div>
-                                    <div class="d-flex flex-row reviews justify-content-between">
-                                        <span>Quality</span>
-                                        <div class="star">
-                                            <i class="fa fa-star checked"></i>
-                                            <i class="fa fa-star checked"></i>
-                                            <i class="fa fa-star checked"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <span>Outstanding</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="feedeback">
-                                <h6 class="mb-10">Your Feedback</h6>
-                                <textarea name="feedback" class="form-control" cols="10" rows="10"></textarea>
-                                <div class="mt-10 text-right">
-                                    <a href="#" class="btn text-center text-uppercase enroll">Submit</a>
-                                </div>
-                            </div>
-                            <div class="comments-area mb-30">
-                                <div class="comment-list">
-                                    <div class="single-comment single-reviews justify-content-between d-flex">
-                                        <div class="user justify-content-between d-flex">
-                                            <div class="thumb">
-                                                <img src="img/blog/c1.jpg" alt="">
-                                            </div>
-                                            <div class="desc">
-                                                <h5><a href="#">Emilly Blunt</a>
-                                                    <div class="star">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
-                                                        <span class="fa fa-star"></span>
-                                                    </div>
-                                                </h5>
-                                                <p class="comment">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                    eiusmod tempor incididunt ut labore et dolore.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="comment-list">
-                                    <div class="single-comment single-reviews justify-content-between d-flex">
-                                        <div class="user justify-content-between d-flex">
-                                            <div class="thumb">
-                                                <img src="img/blog/c2.jpg" alt="">
-                                            </div>
-                                            <div class="desc">
-                                                <h5><a href="#">Elsie Cunningham</a>
-                                                    <div class="star">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
-                                                        <span class="fa fa-star"></span>
-                                                    </div>
-                                                </h5>
-                                                <p class="comment">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                    eiusmod tempor incididunt ut labore et dolore.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="comment-list">
-                                    <div class="single-comment single-reviews justify-content-between d-flex">
-                                        <div class="user justify-content-between d-flex">
-                                            <div class="thumb">
-                                                <img src="img/blog/c3.jpg" alt="">
-                                            </div>
-                                            <div class="desc">
-                                                <h5><a href="#">Maria Luna</a>
-                                                    <div class="star">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
-                                                        <span class="fa fa-star"></span>
-                                                    </div>
-                                                </h5>
-                                                <p class="comment">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                    eiusmod tempor incididunt ut labore et dolore.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
