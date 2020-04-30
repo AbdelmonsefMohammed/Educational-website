@@ -49,7 +49,7 @@
                             @endif
                         </div>
                         <div class="content-wrapper">
-                            <h4 class="title">Objectives</h4>
+                            <h4 class="title">Description</h4>
                             <div class="content">
                                 {{$course->description}}
                             </div>
