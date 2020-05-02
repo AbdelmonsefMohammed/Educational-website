@@ -12,10 +12,12 @@
 */
 Auth::routes();
 
+//Socialite package routes
+Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+
 Route::get('/', 'HomeController@index');
-Route::get('/home', 'HomeController@index')->name('home');
-
-
+Route::get('/home', 'HomeController@index');
 
 Route::group(['prefix' => 'courses'], function () {
 	Route::get('/{slug}', 'CourseController@index');

@@ -298,4 +298,28 @@ $(function() {
 
 		})
 	})
+
+	$("#contactform").on("submit",function(e){
+		e.preventDefault();
+		$.ajax({
+			url: '/contact',
+			type: 'POST',
+			data: new FormData(this),
+			dataType: 'JSON',
+			contentType: false,
+			cache: false,
+			processData: false,
+			success: function (data) {
+
+				$('#name').val('');
+				$('#email').val('');
+				$('#subject').val('');
+				$('#message').val('');
+				$("#success_message").css('display','block');
+				$("#success_message").text(data.message);
+			}
+
+		});
+
+	});
 });
