@@ -7,7 +7,7 @@
               Welcome back,<br /> {{$username}}
             </h2>
             <h3>
-              Ready to jump back in? <a href="#">My courses</a>
+              Ready to jump back in? <a href="/mycourses">My courses</a>
             </h3>
         </div>
       </div>

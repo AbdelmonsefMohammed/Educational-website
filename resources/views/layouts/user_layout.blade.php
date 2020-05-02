@@ -28,6 +28,8 @@
   <link rel="stylesheet" href="{{ asset('frontend') }}/css/hexagons.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css" />
   <link rel="stylesheet" href="{{ asset('frontend') }}/css/main.css" />
+
+  @yield('css')
 </head>
 
 <body>
@@ -40,7 +42,7 @@
   <header class="default-header">
     <nav class="navbar navbar-expand-lg  navbar-light">
       <div class="container">
-        <a class="navbar-brand pt-0" href="index.html">
+        <a class="navbar-brand pt-0" href="/">
           <img style="width: 160px;height: 40px;" class="navbar-brand-img" src="{{ asset('argon') }}/img/brand/e_learning.png" alt="" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -50,28 +52,11 @@
 
         <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
           <ul class="navbar-nav">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="courses.html">Courses</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/courses">Courses</a></li>
             <!-- Dropdown -->
-            <li class="dropdown">
-              <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                Pages
-              </a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="elements.html">Elements</a>
-                <a class="dropdown-item" href="course-details.html">Course Details</a>
-              </div>
-            </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                Blog
-              </a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="blog-home.html">Blog Home</a>
-                <a class="dropdown-item" href="blog-single.html">Blog Details</a>
-              </div>
-            </li>
+
             <li class="dropdown">
                 
                   @auth
@@ -86,7 +71,8 @@
                 </a>
                 @auth
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="/profile">Profile</a>
+                  <a class="dropdown-item" href="/mycourses">My Courses</a>
                   <a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();">Logout</a>
                 </div>
@@ -133,6 +119,8 @@
   <script src="{{ asset('frontend') }}/js/waypoints.min.js"></script>
   <script src="{{ asset('frontend') }}/js/jquery.nice-select.min.js"></script>
   <script src="{{ asset('frontend') }}/js/main.js"></script>
+
+  @yield('javascripts')
 </body>
 
 </html>

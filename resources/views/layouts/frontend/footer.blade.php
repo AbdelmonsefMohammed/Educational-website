@@ -2,13 +2,9 @@
   <footer class="footer-area section-gap">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-6 single-footer-widget">
-                <h4>About Website</h4>
-                <p>This website was created by Abdelmonsef Mohammed Feel free to text me using the social media links down below.</p>
 
-            </div>
             <div class="col-lg-2 col-md-6 single-footer-widget">
-                <h4>Top Products</h4>
+                <h4>Top Tracks</h4>
                 <ul>
                     <li><a href="#">Managed Website</a></li>
                     <li><a href="#">Manage Reputation</a></li>
@@ -43,6 +39,11 @@
                     <li><a href="#">Agencies</a></li>
                 </ul>
             </div>
+            <div class="col-lg-4 col-md-6 single-footer-widget">
+                <h4>About Website</h4>
+                <p>This website was created by Abdelmonsef Mohammed Feel free to text me using the social media links down below.</p>
+
+            </div>
         </div>
         <div class="footer-bottom row align-items-center">
             <p class="footer-text m-0 col-lg-8 col-md-12">
@@ -50,9 +51,10 @@
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
             <div class="col-lg-4 col-md-12 footer-social">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-github"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="https://www.facebook.com/abdo.mohammed.921"><i class="fa fa-facebook"></i></a>
+                <a href="https://github.com/AbdelmonsefMohammed"><i class="fa fa-github"></i></a>
+                <a href="linkedin.com/in/abdelmonsef-mohammed"><i class="fa fa-linkedin"></i></a>
+                <a href=""><i class="fab fa-chrome"></i></a>
             </div>
         </div>
     </div>

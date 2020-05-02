@@ -259,4 +259,43 @@ $(function() {
 	$(document).ready(function() {
 		$('#mc_embed_signup').find('form').ajaxChimp();
 	});
+
+
+	$('#upload_btn').on('click',function(e) {
+		e.preventDefault();
+		if($('#upload_btn').attr('class') != "btn btn-sm btn-success mr-4")
+		{
+		$("#image_file").trigger('click');
+		}else{
+			//submit form
+			$("#form").submit();
+			$('#upload_btn').html("change");
+			$('#upload_btn').attr('class',"btn btn-sm btn-default mr-4");
+		}
+	});
+	$("#image_file").on("change",function(){
+		let image_value = $(this).val();
+		$('#upload_btn').html("save");
+		$('#upload_btn').attr('class',"btn btn-sm btn-success mr-4");
+	})
+
+	//form submit ajax
+
+	$("#form").on('submit',function(e) {
+		e.preventDefault();
+		$.ajax({
+			url: '/profile',
+			type: 'POST',
+			data: new FormData(this),
+			dataType: 'JSON',
+			contentType: false,
+			cache: false,
+			processData: false,
+			success: function (data) {
+				console.log(data);
+				$("#uploaded_image").html(data.uploaded_image);
+			}
+
+		})
+	})
 });

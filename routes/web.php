@@ -15,13 +15,24 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/courses/{slug}', 'CourseController@index');
-Route::get('/courses/{slug}/quizzes/{name}', 'QuizController@index');
-Route::post('/courses/{slug}/quizzes/{name}', 'QuizController@submit')->name('submit');
+
+
+Route::group(['prefix' => 'courses'], function () {
+	Route::get('/{slug}', 'CourseController@index');
+	Route::post('/{slug}', 'CourseController@enroll')->middleware('auth');
+	Route::get('/{slug}/quizzes/{name}', 'QuizController@index');
+	Route::post('/{slug}/quizzes/{name}', 'QuizController@submit')->name('submit');
+});
+route::get('/courses','CourseController@allcourses');
 Route::get('/search','SearchController@index');
+Route::get('/tracks/{name}','TrackController@index');
+Route::get('/mycourses','MyCoursesController@index');
 
+Route::get('/profile','ProfileController@index');
+Route::post('/profile','ProfileController@update_image');
 
-
+Route::get('/contact','ContactController@index');
+Route::post('/contact','ContactController@send');
 
 
 //Admin routes

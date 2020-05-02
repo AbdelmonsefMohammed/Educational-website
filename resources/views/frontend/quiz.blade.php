@@ -16,7 +16,7 @@
                         <span class="box">
                             <a href="/">Home </a>
                             <i class="lnr lnr-arrow-right"></i>
-                            <a href="courses.html">Courses </a>
+                            <a href="/courses">Courses </a>
                             <i class="lnr lnr-arrow-right"></i>
                             <a href="/courses/{{$course->slug}}">Course Details</a>
                             <i class="lnr lnr-arrow-right"></i>

@@ -16,7 +16,7 @@
                         <span class="box">
                             <a href="/">Home </a>
                             <i class="lnr lnr-arrow-right"></i>
-                            <a href="courses.html">Courses </a>
+                            <a href="/courses">Courses </a>
                             <i class="lnr lnr-arrow-right"></i>
                             <a href="/courses/{{$course->slug}}">Course Details</a>
                         </span>
@@ -54,7 +54,9 @@
                                 {{$course->description}}
                             </div>
     
-    
+                            @auth
+                                
+                            
                             <h4 class="title">Course Videos</h4>
                             <div class="content">
                                 @if (count($course->videos) > 0)
@@ -64,7 +66,7 @@
 
                                     <li class="justify-content-between d-flex">
                                         <p>{{$video->title}}</p>
-                                        <a class="btn text-uppercase play-btn" href="{{$video->link}}"> Watch Video</a>
+                                        <a class="btn text-uppercase play-btn {{count(auth()->user()->courses()->where('slug',$course->slug)->get()) > 0 ? '':'disabled'}}" href="{{$video->link}}"> Watch Video</a>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -83,7 +85,7 @@
                                     <li class="justify-content-between d-flex">
                                         <p>{{$quiz->name}}</p>
                                         
-                                        <a target="_blank" href="/courses/{{$course->slug}}/quizzes/{{$quiz->name}}" class="btn text-uppercase">Start Quiz</a>
+                                        <a target="_blank" href="/courses/{{$course->slug}}/quizzes/{{$quiz->name}}" class="btn text-uppercase {{count(auth()->user()->courses()->where('slug',$course->slug)->get()) > 0 ? '':'disabled'}}">Start Quiz</a>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -91,6 +93,7 @@
                                 <p>No quizzes yet</p>
                                 @endif
                             </div>
+                            @endauth
                         </div>
                     </div>
     
@@ -117,13 +120,20 @@
                             </li>
                             <li>
                                 <a class="justify-content-between d-flex">
-                                    <p>Schedule </p>
-                                    <span>2.00 pm to 4.00 pm</span>
+                                    <p>Created at </p>
+                                    <span>{{$course->created_at->diffForHumans()}}</span>
                                 </a>
                             </li>
                         </ul>
-                        <a href="#" class="btn text-uppercase enroll">Enroll the course</a>
-    
+                        @if (count(auth()->user()->courses()->where('slug',$course->slug)->get()) > 0)
+                            <a class="btn text-uppercase enroll">Enrolled</a>
+                        @else
+                            <form method="POST" action="/courses/{{$course->slug}}">
+                                @csrf
+                                <input name="enroll" class="btn text-uppercase enroll" type="submit" value="Enroll the course">
+                            </form>
+                        @endif
+
                         
                     </div>
                 </div>

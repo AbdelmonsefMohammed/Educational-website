@@ -28,7 +28,7 @@
               <div class="feature-item d-flex">
                 <i class="ti-book"></i>
                 <div class="ml-20">
-                  <h4>New Classes</h4>
+                  <h4>New Tracks</h4>
                   <p>
                     In the history of modern astronomy, there is probably no one greater leap forward.
                   </p>
@@ -50,7 +50,7 @@
               <div class="feature-item d-flex border-right-0">
                 <i class="ti-desktop"></i>
                 <div class="ml-20">
-                  <h4>Full E-Books</h4>
+                  <h4>Quizzess</h4>
                   <p>
                     In the history of modern astronomy, there is probably no one greater leap forward.
                   </p>

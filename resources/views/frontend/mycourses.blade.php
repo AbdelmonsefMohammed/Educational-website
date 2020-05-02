@@ -7,16 +7,16 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-12 banner-right">
                     <h1 class="text-white">
-                        Search for
+                        My Courses
                     </h1>
                     <p class="mx-auto text-white  mt-20 mb-40">
-                        {{$q}}
+
                     </p>
                     <div class="link-nav">
                         <span class="box">
                             <a href="/">Home </a>
                             <i class="lnr lnr-arrow-right"></i>
-                            <a>Related Courses</a>
+                            <a href="/mycourses">MyCourses </a>
                         </span>
                     </div>
                 </div>
@@ -24,14 +24,13 @@
         </div>
     </section>
     <!-- ================ End banner Area ================= -->
-    
+
     <!-- Start courses Area -->
-	<section class="post-content-area">
+	<section class="post-content-area section-gap">
 		<div class="container">
-            <h3 class="text-heading"><?php echo count($courses);?> records matchs "{{$q}}"</h3>
 			<div class="row">
 				<div class="col-lg-8 posts-list">
-                    @foreach ($courses as $course)
+                    @foreach ($user_courses as $course)
                     
                         <div class="single-post row">
                             <div class="col-lg-3  col-md-3 meta-details">
@@ -59,7 +58,7 @@
                                 <p class="excert">
                                     {{$course->description}}
                                 </p>
-                                <a href="/courses/{{$course->slug}}" class="genric-btn primary radius">View More</a>
+                                <a href="/courses/{{$course->slug}}" class="genric-btn primary radius">View</a>
                             </div>
                         </div>
                     @endforeach
@@ -94,5 +93,6 @@
 		</div>
 	</section>
 	<!-- End courses Area -->
+
 
 @endsection
