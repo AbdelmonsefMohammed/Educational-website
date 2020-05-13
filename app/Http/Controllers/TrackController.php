@@ -9,8 +9,8 @@ class TrackController extends Controller
 {
     public function index($name)
     {
-        $courses = Track::where('name',$name)->first()->courses;
+        $track = Track::where('name',$name)->first();
 
-        return view('track_courses',compact('courses'));
+        return view('/frontend/track',compact('track'));
     }
 }

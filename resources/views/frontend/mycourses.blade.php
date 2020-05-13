@@ -35,7 +35,7 @@
                         <div class="single-post row">
                             <div class="col-lg-3  col-md-3 meta-details">
                                 <ul class="tags">
-                                    <li><a href="#">Category:{{$course->track->name}}</a></li>
+                                    <li>Track Name : <a href="/track/{{ $course->track->name }}">{{$course->track->name}}</a></li>
                                 </ul>
                                 <div class="user-details row">
                                     <p class="date col-lg-12 col-md-12 col-6"><a=>{{$course->created_at->diffForHumans()}}</a> <span class="lnr lnr-calendar-full"></span></p>
@@ -46,10 +46,10 @@
                             <div class="col-lg-9 col-md-9 ">
                                 <div class="feature-img">
                                     @if($course->photo)
-                                    <img height="252" class="" src="/images/{{$course->photo->filename}}" alt="Card image cap">
+                                    <img height="252" class="" src="{{asset('images')}}/{{$course->photo->filename}}" alt="Card image cap">
                                     {{-- delete at production --}}
                                     @else 
-                                    <img height="252" class="" src="/images/1.jpg" alt="Card image cap">
+                                    <img height="252" class="" src="{{ asset('images') }}/default.jpg" alt="Card image cap">
                                     @endif 
                                 </div>
                                 <a class="posts-title" href="/courses/{{$course->slug}}">
@@ -78,7 +78,7 @@
                                 @foreach ($famous_tracks as $track)
                                 
                                     <li>
-                                        <a href="#" class="d-flex justify-content-between">
+                                        <a href="/track/{{ $track->name }}" class="d-flex justify-content-between">
                                             <p>{{$track->name}}</p>
                                         </a>
                                     </li>

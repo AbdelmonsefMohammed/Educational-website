@@ -22,9 +22,9 @@
                             <div class="col-sm-6">
                                 <div class="course-image">
                                     @if($course->photo)
-                                    <img src="/images/{{$course->photo->filename}}" alt="" class="img-fluid">
+                                    <img src="{{asset('images')}}/{{$course->photo->filename}}" alt="" class="img-fluid">
                                     @else
-                                    <img class="card-img-top" src="/images/1.jpg" alt="Card image cap">
+                                    <img class="card-img-top" src="{{ asset('images') }}/default.jpg" alt="Card image cap">
                                     @endif
                                 </div>
                             </div>

@@ -53,8 +53,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             <div class="col-lg-4 col-md-12 footer-social">
                 <a href="https://www.facebook.com/abdo.mohammed.921"><i class="fa fa-facebook"></i></a>
                 <a href="https://github.com/AbdelmonsefMohammed"><i class="fa fa-github"></i></a>
-                <a href="linkedin.com/in/abdelmonsef-mohammed"><i class="fa fa-linkedin"></i></a>
-                <a href=""><i class="fab fa-chrome"></i></a>
+                <a href="https://linkedin.com/in/abdelmonsef-mohammed"><i class="fa fa-linkedin"></i></a>
+                <a href="https://abdelmonsefmohammed.github.io/portfolio/"><i class="fa fa-chrome"></i></a>
             </div>
         </div>
     </div>

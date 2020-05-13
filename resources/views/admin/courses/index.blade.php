@@ -37,10 +37,10 @@
                             <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6">
                             <div class="card mb-3" style="width: 18rem;">
                                 @if($course->photo)
-                                <img height="190" class="card-img-top" src="/images/{{$course->photo->filename}}" alt="Card image cap">
+                                <img height="190" class="card-img-top" src="{{asset('images')}}/{{$course->photo->filename}}" alt="Card image cap">
                                 {{-- delete at production --}}
                                 @else 
-                                <img height="190" class="card-img-top" src="/images/1.jpg" alt="Card image cap">
+                                <img height="190" class="card-img-top" src="{{ asset('images') }}/default.jpg" alt="Card image cap">
                                 @endif 
                                <div class="card-body text-center">
                                 <h5 class="card-title">{{\Str::limit($course->title , 30)}}</h5>

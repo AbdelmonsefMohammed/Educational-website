@@ -7,13 +7,13 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-12 banner-right">
                     <h1 class="text-white">
-                        All Courses
+                        Track name: {{$track->name}}
                     </h1>
                     <div class="link-nav">
                         <span class="box">
                             <a href="/">Home </a>
                             <i class="lnr lnr-arrow-right"></i>
-                            <a href="/courses">Courses </a>
+                          <a href="/track/{{$track->name}}">Track </a>
 
                         </span>
                     </div>
@@ -26,39 +26,39 @@
 <!-- ================ Start user enrollerd Courses Area ================= -->
   <section class="popular-course-area section-gap">
     <div class="container-fluid">
-        @foreach($tracks as $track)
+
       <div class="row justify-content-center section-title">
 
         <div class="col-lg-12">       
 
             <h3>
-              <a href="/track/{{ $track->name }}">
               Track name: {{$track->name}}
-              </a>
             </h3>
         </div>
       </div>
 
       <div class="owl-carousel popuar-course-carusel">
         
-
-
         @foreach ($track->courses as $course)
         
         <div class="single-popular-course">
             <div class="thumb">
               @if ($course->photo)
               <a href="/courses/{{$course->slug}}">
-                <img style="height:165.75px" class="f-img img-fluid mx-auto" src="{{ asset('images') }}/{{ $course->photo->filename }}" alt="" />
+                <img style="height:165.75px" class="f-img img-fluid mx-auto" src="/images/{{ $course->photo->filename }}" alt="" />
               </a>
               @else
               <a href="/courses/{{$course->slug}}">
-                <img style="height:165.75px" class="f-img img-fluid mx-auto" src="{{ asset('images') }}/default.jpg" alt="" />
+                <img style="height:165.75px" class="f-img img-fluid mx-auto" src="{{ asset('frontend') }}/img/popular-course/p3.jpg" alt="" />
               </a>
               @endif
             </div>
             <div class="details">
-
+              <div class="d-flex justify-content-between mb-20">
+                <a href="#">
+                <p class="name">{{$track->name}}</p>
+                </a>
+              </div>
               <a href="/courses/{{$course->slug}}">
                 <h5 title="{{$course->title}}">{{\Str::limit($course->title,20)}}</h5>
               </a>
@@ -66,15 +66,7 @@
         </div>
         @endforeach
         
-
-        
       </div>
-      @endforeach
-      <div>
-        <nav class="d-flex justify-content-center" aria-label="...">
-          {{$tracks->links()}}
-        </nav>
-    </div>
 
     </div>
   </section>

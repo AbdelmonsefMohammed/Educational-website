@@ -27,7 +27,7 @@ Route::group(['prefix' => 'courses'], function () {
 });
 route::get('/courses','CourseController@allcourses');
 Route::get('/search','SearchController@index');
-Route::get('/tracks/{name}','TrackController@index');
+Route::get('/track/{name}','TrackController@index'); //herereerererererer
 Route::get('/mycourses','MyCoursesController@index');
 
 Route::get('/profile','ProfileController@index');

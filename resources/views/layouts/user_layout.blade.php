@@ -43,7 +43,7 @@
     <nav class="navbar navbar-expand-lg  navbar-light">
       <div class="container">
         <a class="navbar-brand pt-0" href="/">
-          <img style="width: 160px;height: 40px;" class="navbar-brand-img" src="{{ asset('argon') }}/img/brand/e_learning.png" alt="" />
+          <img style="width: 160px;height: 40px;" class="navbar-brand-img" src="{{ asset('images') }}/e_learning.png" alt="" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

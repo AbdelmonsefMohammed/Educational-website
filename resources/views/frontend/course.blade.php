@@ -43,9 +43,9 @@
                         </div>
                         <div class="main-image">
                             @if ($course->photo)
-                            <img style="width:730px;height:340px" class="img-fluid" src="/images/{{ $course->photo->filename }}" alt="">
+                            <img style="width:730px;height:340px" class="img-fluid" src="{{asset('images')}}/{{ $course->photo->filename }}" alt="">
                             @else
-                            <img style="width:730px;height:340px" class="img-fluid" src="{{ asset('frontend') }}/img/popular-course/p3.jpg" alt="">
+                            <img style="width:730px;height:340px" class="img-fluid" src="{{ asset('images') }}/default.jpg" alt="">
                             @endif
                         </div>
                         <div class="content-wrapper">
@@ -125,6 +125,13 @@
                                 </a>
                             </li>
                         </ul>
+                        @guest
+                            <form method="POST" action="/courses/{{$course->slug}}">
+                                @csrf
+                                <input name="enroll" class="btn text-uppercase enroll" type="submit" value="Enroll the course">
+                            </form>
+                        @endguest
+                        @auth
                         @if (count(auth()->user()->courses()->where('slug',$course->slug)->get()) > 0)
                             <a class="btn text-uppercase enroll">Enrolled</a>
                         @else
@@ -133,6 +140,7 @@
                                 <input name="enroll" class="btn text-uppercase enroll" type="submit" value="Enroll the course">
                             </form>
                         @endif
+                        @endauth
 
                         
                     </div>
