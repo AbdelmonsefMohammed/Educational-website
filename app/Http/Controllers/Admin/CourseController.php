@@ -40,34 +40,30 @@ class CourseController extends Controller
            'status'   => 'required|integer|in:0,1',
            'link'     => 'required|url',
            'track_id' => 'required|integer',
-           'image'    => 'required|image'
+           'pic'    => 'required|image'
        ];
        $this->validate($request, $rules);
        
        $slug = strtolower(str_replace(' ','-',$request['title']));
        $request->request->add(['slug' => $slug]);
-       $course = Course::create($request->all(),);
+       
+       if($file = $request->file('pic'))
+       {
+          $filename = $file->getClientOriginalName();
 
-       if($course)
-       {    
-           if($file = $request->file('image'))
-           {
-              $filename = $file->getClientOriginalName();
-              $filenewname = time() . '_' . $filename;
-              
-              if($file->move('images' , $filenewname))
-              {
-                  Photo::create([
-                      'filename'  => $filenewname,
-                      'photoable_id' => $course->id,
-                      'photoable_type' => 'App\Course',
-                  ]);
-              }
+          $filenewname = time() . '_' . $filename;
 
-           }
-           
-           return redirect('/admin/courses')->withStatus('Course successfully created');
+          if($file->move(public_path('images') , $filenewname))
+          {
+            $request->request->add(['image' => $filenewname]);
+          }
+
        }
+       $course = Course::create($request->all());
+
+
+           return redirect('/admin/courses')->withStatus('Course successfully created');
+
     }
 
 
@@ -97,42 +93,32 @@ class CourseController extends Controller
             'status'   => 'required|integer|in:0,1',
             'link'     => 'required|url',
             'track_id' => 'required|integer',
-            'image'    => 'image'
+            'pic'    => 'image'
         ];
         $this->validate($request, $rules);
         $slug = strtolower(str_replace(' ','-',$request['title']));
         $request->request->add(['slug' => $slug]);
-        $course->update($request->all());
- 
-        if($course)
-        {    
-            if($file = $request->file('image'))
-            {
-               $filename = $file->getClientOriginalName();
-               $filenewname = time() . '_' . $filename;
-               
-               if($file->move('images' , $filenewname))
-               {    
-                   if($course->photo){
-                   $photo = $course->photo;
 
-                   //remove old photo
-                   $filename = $photo->filename;
-                   unlink('images/' . $filename);
+        if($file = $request->file('pic'))
+        {
+           $filename = $file->getClientOriginalName();
+           $filenewname = time() . '_' . $filename;
+           
+           if($file->move(public_path('images') , $filenewname))
+           {    
+               if($course->image){       
+               //remove old photo
+               unlink('images/' . $course->image);
+               $request->request->add(['image' => $filenewname]);
 
-                   $photo->filename = $filenewname;
-                   $photo->save();
-                   }else{
-                    Photo::create([
-                        'filename'  => $filenewname,
-                        'photoable_id' => $course->id,
-                        'photoable_type' => 'App\Course',
-                    ]);
-                   }
+               }else{
+               $request->request->add(['image' => $filenewname]);
                }
- 
-            }
-            
+           }
+
+        }
+        if($course->update($request->all()))
+        {    
             return redirect('/admin/courses')->withStatus('Course successfully updated');
         }else{
             return redirect('/admin/courses/' . $course->id , '/edit')->withStatus('Something went wrong');
@@ -147,13 +133,11 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        if($course->photo)
+        if($course->image)
         {
-        $filename = $course->photo->filename;
+        $filename = $course->image;
         unlink('images/' . $filename);
-        }
-        $course->photo->delete();
-        
+        }       
         $course->delete();
         return redirect('/admin/courses')->withStatus('Course successfully deleted');
     }

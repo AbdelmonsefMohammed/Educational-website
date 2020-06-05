@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Course;
 use App\Track;
-use App\Photo;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller

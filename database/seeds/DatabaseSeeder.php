@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         //$this->call([UsersTableSeeder::class]);
 
-        $users = factory('App\User', 20)->create();
+        $users = factory('App\User', 100)->create();
         $tracks = factory('App\Track', 20)->create();
 
         foreach($users as $user)
@@ -25,15 +25,17 @@ class DatabaseSeeder extends Seeder
             $tracks_ids[] = Track::all()->random()->id;
             $tracks_ids[] = Track::all()->random()->id;
             $tracks_ids[] = Track::all()->random()->id;
+            $tracks_ids[] = Track::all()->random()->id;
 
             $user->tracks()->sync($tracks_ids);
         }
         
-        $courses = factory('App\Course', 30)->create();
+        $courses = factory('App\Course', 60)->create();
         
         foreach($users as $user)
         {
             $courses_ids = [];
+            $courses_ids[] = Course::all()->random()->id;
             $courses_ids[] = Course::all()->random()->id;
             $courses_ids[] = Course::all()->random()->id;
             $courses_ids[] = Course::all()->random()->id;
@@ -58,6 +60,5 @@ class DatabaseSeeder extends Seeder
         factory('App\Video', 100)->create();
 
         factory('App\Question', 500)->create();
-        factory('App\Photo', 60)->create();
     }
 }

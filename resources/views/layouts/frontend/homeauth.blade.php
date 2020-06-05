@@ -20,9 +20,9 @@
         
         <div class="single-popular-course">
             <div class="thumb">
-              @if ($course->photo)
+              @if ($course->image)
               <a href="/courses/{{$course->slug}}">
-                <img style="height:165.75px" class="f-img img-fluid mx-auto" src="{{ asset('images') }}/{{ $course->photo->filename }}" alt="" />
+                <img style="height:165.75px" class="f-img img-fluid mx-auto" src="{{ asset('images') }}/{{ $course->image }}" alt="" />
               </a>
               @else
               <a href="/courses/{{$course->slug}}">
@@ -72,9 +72,9 @@
               @foreach ($free_courses as $freecourse)
                 
               <div><a href="#">
-                  @if ($freecourse->photo)
+                  @if ($freecourse->image)
                   <a href="/courses/{{$freecourse->slug}}">
-                  <img style="height:369px" class="img-fluid" src="{{ asset('images') }}/{{ $freecourse->photo->filename }}" alt="" />
+                  <img style="height:369px" class="img-fluid" src="{{ asset('images') }}/{{ $freecourse->image }}" alt="" />
                   </a>
                 @else
                 <a href="/courses/{{$freecourse->slug}}">
@@ -119,9 +119,9 @@
         
         <div class="single-popular-course">
             <div class="thumb">
-              @if ($course->photo)
+              @if ($course->image)
               <a href="/courses/{{$course->slug}}">
-                <img style="height:165.75px" class="f-img img-fluid mx-auto" src="{{ asset('images') }}/{{ $course->photo->filename }}" alt="" />
+                <img style="height:165.75px" class="f-img img-fluid mx-auto" src="{{ asset('images') }}/{{ $course->image }}" alt="" />
               </a>
               @else
                 <a href="/courses/{{$course->slug}}">
@@ -186,8 +186,8 @@
 							<div class="overlay overlay-bg"></div>
 							<a href="#" target="_blank">
 								<div class="thumb">
-                  @if ($course->photo)
-                  <img style="height:250px" class="content-image img-fluid d-block mx-auto" src="{{ asset('images') }}/{{ $course->photo->filename }}" alt="">
+                  @if ($course->image)
+                  <img style="height:250px" class="content-image img-fluid d-block mx-auto" src="{{ asset('images') }}/{{ $course->image }}" alt="">
                   @else
                   <img style="height:250px" class="content-image img-fluid d-block mx-auto" src="{{ asset('images') }}/default.jpg" alt="">
                   @endif

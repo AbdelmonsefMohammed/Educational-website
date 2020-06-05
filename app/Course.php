@@ -12,14 +12,9 @@ class Course extends Model
         'description',
         'status',
         'link',
-        'track_id'
+        'track_id',
+        'image',
     ];
-
-    public function photo()
-    {
-        return $this->morphOne('App\photo','photoable');
-    }
-
     public function users()
     {
         return $this->belongsToMany('App\User');

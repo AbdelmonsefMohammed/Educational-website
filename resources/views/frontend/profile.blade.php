@@ -30,7 +30,7 @@
 
         <link href="{{ asset('argon') }}/vendor/nucleo/css/nucleo.css" rel="stylesheet">
 
-        <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
+        <link type="text/css" href="{{ asset('argon') }}/css/argon.min.css" rel="stylesheet">
     @endsection
 
 
@@ -43,10 +43,10 @@
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image" id="uploaded_image">
                                     @if($user->photo)
-                                    <img height="180" class="rounded-circle" src="/images/{{$user->photo->filename}}" alt="Card image cap">
+                                    <img height="180" width="180" class="rounded-circle" src="/images/{{$user->photo}}" alt="Card image cap">
                                     {{-- delete at production --}}
                                     @else 
-                                    <img class="rounded-circle" src="{{ asset('argon') }}/img/theme/team-4-800x800.jpg" alt="Card image cap">
+                                    <img height="180" width="180" class="rounded-circle" src="{{ asset('images') }}/photo1.jpg" alt="Card image cap">
                                     @endif 
                             </div>
                         </div>

@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','role'
+        'name', 'email', 'password','role','photo'
     ];
 
     /**
@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     public function photo()
     {
-        return $this->morphOne('App\photo','photoable');
+        return $this->hasOne('App\photo');
     }
 
     public function tracks()

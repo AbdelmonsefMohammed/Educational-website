@@ -42,8 +42,8 @@
                             @endif
                         </div>
                         <div class="main-image">
-                            @if ($course->photo)
-                            <img style="width:730px;height:340px" class="img-fluid" src="{{asset('images')}}/{{ $course->photo->filename }}" alt="">
+                            @if ($course->image)
+                            <img style="width:730px;height:340px" class="img-fluid" src="{{asset('images')}}/{{ $course->image }}" alt="">
                             @else
                             <img style="width:730px;height:340px" class="img-fluid" src="{{ asset('images') }}/default.jpg" alt="">
                             @endif

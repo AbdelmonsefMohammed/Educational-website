@@ -45,8 +45,8 @@
                             </div>
                             <div class="col-lg-9 col-md-9 ">
                                 <div class="feature-img">
-                                    @if($course->photo)
-                                    <img height="252" class="" src="{{asset('images')}}/{{$course->photo->filename}}" alt="Card image cap">
+                                    @if($course->image)
+                                    <img height="252" class="" src="{{asset('images')}}/{{$course->image}}" alt="Card image cap">
                                     {{-- delete at production --}}
                                     @else 
                                     <img height="252" class="" src="{{ asset('images') }}/default.jpg" alt="Card image cap">

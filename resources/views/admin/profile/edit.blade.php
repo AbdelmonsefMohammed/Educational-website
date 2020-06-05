@@ -15,7 +15,7 @@
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image">
                                 <a href="#">
-                                    <img src="{{ asset('images') }}/{{auth()->user()->photo->filename}}" class="rounded-circle">
+                                    <img src="{{ asset('images') }}/{{auth()->user()->photo}}" class="rounded-circle">
                                 </a>
                             </div>
                         </div>

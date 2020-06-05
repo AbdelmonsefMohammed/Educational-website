@@ -21,8 +21,8 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="course-image">
-                                    @if($course->photo)
-                                    <img src="{{asset('images')}}/{{$course->photo->filename}}" alt="" class="img-fluid">
+                                    @if($course->image)
+                                    <img src="{{asset('images')}}/{{$course->image}}" alt="" class="img-fluid">
                                     @else
                                     <img class="card-img-top" src="{{ asset('images') }}/default.jpg" alt="Card image cap">
                                     @endif

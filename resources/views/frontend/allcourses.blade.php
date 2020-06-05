@@ -47,9 +47,9 @@
         
         <div class="single-popular-course">
             <div class="thumb">
-              @if ($course->photo)
+              @if ($course->image)
               <a href="/courses/{{$course->slug}}">
-                <img style="height:165.75px" class="f-img img-fluid mx-auto" src="{{ asset('images') }}/{{ $course->photo->filename }}" alt="" />
+                <img style="height:165.75px" class="f-img img-fluid mx-auto" src="{{ asset('images') }}/{{ $course->image }}" alt="" />
               </a>
               @else
               <a href="/courses/{{$course->slug}}">

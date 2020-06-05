@@ -86,13 +86,13 @@
                                     @endif
                                 </div>
 
-                                <div class="form-group{{ $errors->has('image') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-image">{{ __('Image') }}</label>
-                                    <input type="file" name="image" id="input-image" class="form-control form-control-alternative{{ $errors->has('image') ? ' is-invalid' : '' }}">
+                                <div class="form-group{{ $errors->has('pic') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-pic">{{ __('Image') }}</label>
+                                    <input type="file" name="pic" id="input-pic" class="form-control form-control-alternative{{ $errors->has('pic') ? ' is-invalid' : '' }}">
                                     
-                                    @if ($errors->has('image'))
+                                    @if ($errors->has('pic'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('image') }}</strong>
+                                            <strong>{{ $errors->first('pic') }}</strong>
                                         </span>
                                     @endif
                                 </div>

@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('score')->default(0);
+            $table->string('photo')->default(null);
 
             $table->integer('role')->default(0); // 0 : user , 1 : admin
             $table->rememberToken();

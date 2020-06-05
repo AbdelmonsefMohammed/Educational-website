@@ -29,6 +29,7 @@ $factory->define(User::class, function (Faker $faker) {
         'password' => '$2y$10$WVu/aWH71P7c.IBjd.HcBuNnew7nPHn8Z32tR9cgiaXgePugkum5S', // secret
         'remember_token' => Str::random(10),
         'role' => $faker->randomElement([0,1]),
+        'photo' => $faker->randomElement(['photo1.jpg','photo2.jpg','photo3.jpg']),
         'score' => $faker->randomElement([54,90,200,40,155,190]),
     ];
 });
@@ -51,6 +52,8 @@ $factory->define(Course::class, function (Faker $faker) {
         'description' => $faker->paragraph,
         'status' => $faker->randomElement([0,1]),
         'link'  =>  $faker->url,
+        'image' => $faker->randomElement(['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg',
+        '7.jpg','8.jpg','9.jpg','10.jpg']),
         'track_id' => Track::all()->random()->id,
 
     ];
@@ -59,7 +62,7 @@ $factory->define(Course::class, function (Faker $faker) {
 $factory->define(Video::class, function (Faker $faker) {
     return [
         'title' => $faker->word,
-        'link'  =>  $faker->url,
+        'link'  =>  $faker->randomElement(['https://www.youtube.com/watch?v=iWOYAxlnaww','https://www.youtube.com/watch?v=ULssP63AhPw','https://www.youtube.com/watch?v=-1h8HQ6rd5U','https://www.youtube.com/watch?v=v0QTqHXiVNw&t=975s','https://www.youtube.com/watch?v=ZYV6dYtz4HA','https://www.youtube.com/watch?v=iWOYAxlnaww']),
         'course_id' => Course::all()->random()->id,
 
     ];
@@ -85,23 +88,6 @@ $factory->define(Question::class, function (Faker $faker) {
         'type' => $faker->randomElement(['text','checkbox']),
         'quiz_id' => Quiz::all()->random()->id,
 
-    ];
-});
-
-$factory->define(Photo::class, function (Faker $faker) {
-
-    $userid = User::all()->random()->id;
-    $courseid = Course::all()->random()->id;
-    
-    $photoable_id = $faker->randomElement([$userid , $courseid]);
-    $photoable_type = $photoable_id == $userid ? 'App\User' : 'App\Course';
-
-
-    return [
-        'filename' => $faker->randomElement(['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg',
-        '7.jpg','8.jpg','9.jpg','10.jpg']),
-        'photoable_id' => $photoable_id,
-        'photoable_type' => $photoable_type,
     ];
 });
 
